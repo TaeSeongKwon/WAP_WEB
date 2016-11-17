@@ -1,0 +1,108 @@
+Implements Plan ( View )  ( 2015. 09. 30. ~ 12. 10.)
+
+1. Search Result List View											| *
+2. ID Find View														| **
+3. Password Find View												| **
+4. Gallery List View													| ***
+5. Gallery Show View													| ***
+6. Userinfo View														| ****
+7. Administrator View (Member Manage / Board Manage / Popup Manage) 	| *****
+
+ Library (Main)														| ******
+8. Library Administrator Mode
+9. Library User Mode
+
+
+Iterator List
+1. View
+	Step 1
+	01) Main 										90%
+	02) loginView									90%
+	03) join - student number check					90%
+	04) join - Main 									90%
+	05) board - List 									80%
+	06) board - view 									70%
+	07) board - write									70%
+	08) about										40%
+	09) profile										80%
+	// Option
+	10) gallery - List 								00%
+	11) gallery - View 								00%
+	12) gallery - write								00%
+
+	Step 2
+	13) admin - member Manage 						60%
+	14) admin - board Manage 							00%
+	15) search Result 								00%
+	16) search more									00%
+	17) admin - Popup 								00%
+
+	Step 3
+	18) project - create								00%
+	19) project - List 								00%
+	20) project - View 								00%
+	21) admin - project Manage 						00%
+	
+2. Control
+	Step 1
+	01) Main 										90%
+	02) loginView									90%
+	03) join - student number check					90%
+	04) join - Main 									90%
+	05) board - List 								80%
+	06) board - view 								70%
+	07) board - write								70%
+	08) about										40%
+	09) profile										00%
+	10) gallery - List 								00%
+	11) gallery - View 								00%
+	12) gallery - write								00%
+
+	Step 2
+	13) admin - member Manage 						00%
+	14) admin - board Manage 						00%
+	15) search Result 								00%
+	16) search more									00%
+	17) admin - Popup 								00%
+
+	Step 3
+	18) project - create								00%
+	19) project - List 								00%
+	20) project - View 								00%
+	21) admin - project Manage 						00%
+
+3. Model
+	Step 1
+	01) Main 										90%
+	02) loginView									90%
+	03) join - student number check					90%
+	04) join - Main 									90%
+	05) board - List 								80%
+	06) board - view 								70%
+	07) board - write								70%
+	08) about										40%
+	09) profile										00%
+	10) gallery - List 								00%
+	11) gallery - View 								00%
+	12) gallery - write								00%
+
+	Step 2
+	13) admin - member Manage 						00%
+	14) admin - board Manage 						00%
+	15) search Result 								00%
+	16) search more									00%
+	17) admin - Popup 								00%
+
+	Step 3
+	18) project - create								00%
+	19) project - List 								00%
+	20) project - View 								00%
+	21) admin - project Manage 						00%
+
+- Total 				
+Name of Kind				Iterator Cnt 		Complete Percent
+	View 					21						00%
+	Control					21						00%
+	Model					21						00%
+
+ 
