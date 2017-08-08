@@ -23,6 +23,10 @@ class Profile extends CI_Controller {
 		// exit;
 		$this->css = [];
 		$this->js = [];
+		$this->js[] = "jquery-2.1.4.min";
+		$this->js[] = "bootstrap.min";
+		$this->js[] = "jquery.faloading-0.2.min";
+		
 		$this->info = $this->session->userdata('userInfo');
 		if($this->info == null)
 			redirect("member/loginView");
@@ -71,12 +75,19 @@ class Profile extends CI_Controller {
 		$pwd = $this->input->post('userPwd');
 		$info = $this->session->userdata('userInfo');
 		$id = $info['id'];
-		$sql = "SELECT COUNT(*) AS CNT FROM MEMBER WHERE id='$id' AND pwd=PASSWORD('$pwd'); ";
-		$cnt = $this->db->query($sql)->result_array()[0]['CNT'];
-		if($cnt != 0)
-			$this->session->set_userdata('identity_time', time());
+		$sql = "SELECT pwd FROM MEMBER WHERE id=".$this->db->escape($id).";";
 
-		redirect('profile'); 
+		$result = $this->db->query($sql)->result_array();
+		if(count($result) > 0){
+			if(password_verify($pwd, $result[0]['pwd'])){
+				$this->session->set_userdata('identity_time', time());
+				redirect('profile'); 
+			}else{
+				print_r("<meta charset='utf-8'><script>alert('비밀번호가 틀리셨습니다.'); location.replace('/profile');</script>");	
+			}
+		}else{
+			print_r("<meta charset='utf-8'><script>alert('비밀번호가 틀리셨습니다.'); location.replace('/profile');</script>");	
+		}	
 	}
 
 	public function update(){

@@ -12,75 +12,78 @@
 		border-bottom: 3px solid skyblue;
 		padding-bottom: 1px;
 	}
+	#inputSection{
+		margin: 20px auto;
+	}
+	@media (min-width: 768px){
+		#inputSection{
+			width:50%;
+		}
+	}
 </style>
 
-
-<section class='container mainBody'>
-	<article class='row '>
-		<div class='col-xs-12'>
-			<h3>회원가입</h3>
-		</div>
-	</article>
+<section class="container">
+	<h3>회원가입</h3>
 	<hr>
-	<article class='row container joinBody'>
-		<div class='col-sm-5' style='margin:0px auto; float:none !important;'>
-			<form class='form-iline' name='joinForm' action='/member/joinControl' method="post" action=''>
-			<!-- <div class='row'> -->
-				<label class='txtUnderLn'>아이디</label>
-				<div class='form-group'>
-					<input type='text' class='form-control' name='userId' placeholder='아이디'>
-				</div>
-				<!-- <a class='btn btn-danger'>Check ID</a> -->
-				<p id='idNotice'>아이디를 입력하세요</p>
-			<!-- </div> -->
-			<!-- <div class='row'> -->
-				<label class='txtUnderLn'>비밀번호</label>
-				<div class='form-group'>
-					<input type='password' class='form-control' id='pwd' name='pwd' placeholder='비밀번호'>
-				</div>
-			<!-- </div> -->
-			<!-- <div class='row'> -->
-				<div class='form-group'>
-					
-					<input type='password' class='form-control' id='rePwd' placeholder='비밀번호 확인'>
-				</div>
-				<p id='stdNumNotice'>Please Check the PASSWORD!</p>
-				<label class='txtUnderLn'>이름</label>
-				<div class='form-group'>
-					<input type='text' class='form-control' name='name' placeholder='이름'>
-				</div>
-				<label class='txtUnderLn'>생년월일</label>
-				<div id='birthDayDiv' class='form-group'></div>
-				<label class='txtUnderLn'>학번</label>
-				<div class='form-group'>
-					<input type='text' class='form-control' readonly="true" name='sNumber' value='<?=$sNumber?>'>
-				</div>
-				<label class='txtUnderLn'>학과</label>
-				<div class='form-group'>
-					<select name='major' class='form-control'value=''>
-						<option value=''>====== 학과를 선택하세요 ======</option>
-						<option value='1'>컴퓨터공학과</option>
-						<option value='2'>IT융합응용공학과</option>
-					</select>
-					<!-- <input type='text' class='form-control' placeholder='MAJOR'> -->
-				</div>
+</section>
+<section class="container">
+	<article id="inputSection">
+		<form class='form-iline' name='joinForm' action='/member/joinControl' method="post" action=''>
+		<!-- <div class='row'> -->
+			<label class='txtUnderLn'>아이디</label>
+			<div class='form-group'>
+				<input type='text' class='form-control' name='userId' placeholder='아이디'>
+			</div>
+			<!-- <a class='btn btn-danger'>Check ID</a> -->
+			<p id='idNotice'>아이디를 입력하세요</p>
+		<!-- </div> -->
+		<!-- <div class='row'> -->
+			<label class='txtUnderLn'>비밀번호</label>
+			<div class='form-group'>
+				<input type='password' class='form-control' id='pwd' name='pwd' placeholder='비밀번호'>
+			</div>
+		<!-- </div> -->
+		<!-- <div class='row'> -->
+			<div class='form-group'>
 				
-				<label class='txtUnderLn'>E-Mail </label><label class='exampleLb'>EX)WAP@gmail.com</label>
-				<div class='form-group'>
-					<input type='text' class='form-control' name='email' placeholder='이메일'>
-				</div>
-				<label class='txtUnderLn'>연락처</label><label class='exampleLb'>EX)010-0000-0000</label>
-				<div class='form-group'>
-					<input type='text' class='form-control' name='phoneNumber' placeholder="연락처">
-				</div>
-				<label class='txtUnderLn'>자기소개</label>
-				<div class='form-group'>
-					<textarea class='form-control' name='introduce' placeholder='자기소개를 입력하세요'></textarea>
-				</div>
-			<!-- </div> -->
-			</form>
-			<a class='btn btn-primary joinBtn' href='javascript:;' >가입</a> <a class='btn btn-danger' herf='/'>취소</a>
-		</div>
+				<input type='password' class='form-control' id='rePwd' placeholder='비밀번호 확인'>
+			</div>
+			<p id='stdNumNotice'>Please Check the PASSWORD!</p>
+			<label class='txtUnderLn'>이름</label>
+			<div class='form-group'>
+				<input type='text' class='form-control' name='name' placeholder='이름'>
+			</div>
+			<label class='txtUnderLn'>생년월일</label>
+			<div id='birthDayDiv' class='form-group'></div>
+			<label class='txtUnderLn'>학번</label>
+			<div class='form-group'>
+				<input type='text' class='form-control' readonly="true" name='sNumber' value='<?=$sNumber?>'>
+			</div>
+			<label class='txtUnderLn'>학과</label>
+			<div class='form-group'>
+				<select name='major' class='form-control'value=''>
+					<option value=''>====== 학과를 선택하세요 ======</option>
+					<option value='1'>컴퓨터공학과</option>
+					<option value='2'>IT융합응용공학과</option>
+				</select>
+				<!-- <input type='text' class='form-control' placeholder='MAJOR'> -->
+			</div>
+			
+			<label class='txtUnderLn'>E-Mail </label><label class='exampleLb'>EX)WAP@gmail.com</label>
+			<div class='form-group'>
+				<input type='text' class='form-control' name='email' placeholder='이메일'>
+			</div>
+			<label class='txtUnderLn'>연락처</label><label class='exampleLb'>EX)010-0000-0000</label>
+			<div class='form-group'>
+				<input type='text' class='form-control' name='phoneNumber' placeholder="연락처">
+			</div>
+			<label class='txtUnderLn'>자기소개</label>
+			<div class='form-group'>
+				<textarea class='form-control' name='introduce' placeholder='자기소개를 입력하세요'></textarea>
+			</div>
+		<!-- </div> -->
+		</form>
+		<a class='btn btn-primary joinBtn' href='javascript:;' >가입</a> <a class='btn btn-danger' herf='/'>취소</a>
 	</article>
 </section>
 

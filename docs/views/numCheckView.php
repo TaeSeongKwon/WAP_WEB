@@ -2,40 +2,32 @@
 	
 	.centerSec{
 		margin: auto auto;
-
 	}
-	.checkBody{
-		display: flex;
-		display: -webkit-flex;
-		align-items : center;
-		height: inherit;
+	@media (min-width: 768px){
+		.centerSec{
+			width:60%;
+			height : 350px;
+		}
 	}
 	.checkNumberBtn{
 		width:100%;
 	}
 </style>
-
-
-<section class='container mainBody'>
-	<article class='row '>
-		<div class='col-xs-12'>
-			<h3>회원가입</h3>
-		</div>
-	</article>
+<section class="container">
+	<h3>회원가입</h3>
 	<hr>
-	<article class='row container checkBody'>
-		<div class='col-md-5 col-sm-6 col-xs-12 centerSec'>
-			<h3>학번인증</h3>
-			<form method='post' name='checkForm' action='/member/join'>
-				<div class='form-group'>
-					<input type='text' name='sNumber' placeholder='학번을 입력하세요' class='form-control'>
-				</div>
-				<hr>
-				<a  href='javascript:;' class='btn btn-primary checkNumberBtn' >확인</a>
-			</form>
-			 
-		</div>
-	</article>
+</section>
+<section class="container">
+	<div class="centerSec">
+		<h3>학번인증</h3>
+		<form method='post' name='checkForm' action='/member/join'>
+			<div class='form-group'>
+				<input type='text' name='sNumber' placeholder='학번을 입력하세요' class='form-control'>
+			</div>
+			<hr>
+			<a  href='javascript:;' class='btn btn-primary checkNumberBtn' >확인</a>
+		</form>
+	</div>
 </section>
 <script>
 	$('.checkNumberBtn').click(function(){

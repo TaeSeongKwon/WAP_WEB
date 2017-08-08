@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,8 +14,11 @@
 				width : 100%;
 			}
 			footer{
-				height: 200px;
-				background-color: skyblue;
+				margin-top: 30px;
+				background-color: #353535;
+				min-height:200px;
+				color: #b1b1b1;
+				padding: 20px 5px;
 			}
 			body{
 				padding-top:50px;
@@ -37,7 +40,7 @@
 	</head>
 	<body>
 		<header class='logoHeader text-center'>
-			<h1><a href='/'>LOGO</a></h1>
+			<a href="/"><img width="250px" src="/img/main_logo.png"></a>
 		</header>
 		
 		<section class='container mainBody'>
@@ -59,7 +62,18 @@
 				</div>
 			</div>
 		</section>
-		<footer ></footer>
+		<footer>
+			<section class="container">
+				<address>
+					<strong>W.A.P, Inc.</strong><br>
+					대한민국 부산광역시 남구 용소로 45. 부경대학교 대연캠퍼스<br>
+					누리관 옥상 컨테이너 W.A.P<br><br>
+					NooRi Building 5F Container, Pukyong National University DaeYeon Campus<br>
+					YongSo Street 45, NamGoo, Pusan City, Republic of Korea
+				</address>
+				<small>© 2017 All Rights Reserved. W.A.P Create By Kwon TaeSeong</small>
+			</section>
+		</footer>
 		
 		
 	</body>

@@ -52,7 +52,7 @@ class Main extends CI_Controller {
 		// mail('xotjd183@gmail.com', 'WAP_MAIL_TEST', 'HELLO WORLD!! WAP_CIRCLE!!!',$headers);
 		// print_r("123");
 		// exit;
-		$gallerySql = "SELECT A.name, A.idx, COUNT(B.idx) AS cnt 
+		$gallerySql = "SELECT A.name, A.idx, COUNT(B.idx) AS cnt, A.thumbPath  
 						FROM GALLERY AS A LEFT OUTER JOIN GL_COMMENT AS B ON (A.idx = B.idxOf AND B.isUsable = 'Y') 
 						WHERE A.isUsable = 'Y' 
 						GROUP BY A.idx 

@@ -23,6 +23,9 @@ class Board extends CI_Controller {
 		// exit;
 		$this->css = [];
 		$this->js = [];
+		$this->js[] = "jquery-2.1.4.min";
+		$this->js[] = "bootstrap.min";
+		$this->js[] = "jquery.faloading-0.2.min";
 		$this->info = $this->session->userdata('userInfo');
 		if($this->info == null)
 			redirect("member/loginView");
@@ -196,6 +199,8 @@ class Board extends CI_Controller {
 			'type'		=>			$type
 			
 		); 
+		$this->css[] = "summernote";
+		$this->js[] = "summernote.min";
 		$this->css[] = "tsEditor";
 		$this->js[] = "tsEditor";
 		$head = array(
@@ -215,6 +220,8 @@ class Board extends CI_Controller {
 
 		$this->css[] = "tsEditor";
 		$this->js[] = "tsEditor";
+		$this->css[] = "summernote";
+		$this->js[] = "summernote.min";
 		$head = array(
 			"info"			=>			$this->info,
 			"js"				=>			$this->js,

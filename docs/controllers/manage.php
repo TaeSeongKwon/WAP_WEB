@@ -23,6 +23,10 @@ class Manage extends CI_Controller {
 		// exit;
 		$this->js = [];
 		$this->css = [];
+		$this->js[] = "jquery-2.1.4.min";
+		$this->js[] = "bootstrap.min";
+		$this->js[] = "jquery.faloading-0.2.min";
+		
 		$this->info = $this->session->userdata('userInfo');
 		if($this->info == null)
 			redirect("member/loginView");
@@ -37,8 +41,22 @@ class Manage extends CI_Controller {
 		
 	}
 	public function mbCheck(){
-		$this->session->set_userdata('identity_time', time());
-		redirect('/manage/member');
+		$pwd = $this->input->post('userPwd');
+		$info = $this->session->userdata('userInfo');
+		$id = $info['id'];
+		$sql = "SELECT pwd FROM MEMBER WHERE id=".$this->db->escape($id).";";
+
+		$result = $this->db->query($sql)->result_array();
+		if(count($result) > 0){
+			if(password_verify($pwd, $result[0]['pwd'])){
+				$this->session->set_userdata('identity_time', time());
+				redirect('/manage/member');
+			}else{
+				print_r("<meta charset='utf-8'><script>alert('비밀번호가 틀리셨습니다.'); location.replace('/manage/member');</script>");	
+			}
+		}else{
+			print_r("<meta charset='utf-8'><script>alert('비밀번호가 틀리셨습니다.'); location.replace('/manage/member');</script>");	
+		}
 	}
 
 	public function member(){
@@ -102,8 +120,25 @@ class Manage extends CI_Controller {
 	}
 
 	public function brdCheck(){
-		$this->session->set_userdata('identity_time', time());
-		redirect('manage/board');
+		$pwd = $this->input->post('userPwd');
+		$info = $this->session->userdata('userInfo');
+		$id = $info['id'];
+		$sql = "SELECT pwd FROM MEMBER WHERE id=".$this->db->escape($id).";";
+
+		$result = $this->db->query($sql)->result_array();
+		if(count($result) > 0){
+			if(password_verify($pwd, $result[0]['pwd'])){
+				$this->session->set_userdata('identity_time', time());
+				redirect('manage/board');
+			}else{
+				print_r("<meta charset='utf-8'><script>alert('비밀번호가 틀리셨습니다.'); location.replace('/manage/board');</script>");	
+			}
+		}else{
+			print_r("<meta charset='utf-8'><script>alert('비밀번호가 틀리셨습니다.'); location.replace('/manage/board');</script>");	
+		}	
+
+		
+		
 	}
 
 	

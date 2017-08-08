@@ -23,6 +23,9 @@ class Intro extends CI_Controller {
 		// exit;
 		$this->js = [];
 		$this->css = [];
+		$this->js[] = "jquery-2.1.4.min";
+		$this->js[] = "bootstrap.min";
+		$this->js[] = "jquery.faloading-0.2.min";
 		$this->info = $this->session->userdata('userInfo');
 	}
 	public function index()

@@ -30,48 +30,55 @@
 	.imgUpload a, .imgUpload a:hover{
 		text-decoration: none;
 	}
-
+	@media (max-width: 768px){
+		.navbar-collapse{
+			z-index: 9999999;
+	    	position: absolute;
+	    	width: 100%;
+		}
+	}
 </style>
 
 <div class='img-circle imgUpload'>
 	<a href='/gallery/write' class='glyphicon glyphicon-cloud-upload img-circle'></a>
 </div>
-<section class='container mainBody'>
-	<article class='row'>
-		<div class='col-xs-12'>
-			<strong><h3>갤러리</h3></strong>
-		</div>
-	</article>
+<section class="container-fluid">
+	<strong><h3>갤러리</h3></strong>
 	<hr>
-	<article class='row container'>
-		<div id="gallery">
-			<?php foreach($list as $i => $row) : ?>
-				<a href="/gallery/view/<?=$row['idx']?>"><figure class="picture" data-title="<?=$row['name']?>" data-url="<?=$row['thumbPath']?>"></figure></a>
-			<?php endforeach;?>
-			<!-- <a href="#"><figure class="picture" data-title="Image Caption 2" data-url="/pictures/img_3.jpg"></figure></a>
-			<a href="#"><figure class="picture" data-title="Image Caption 4" data-url="/pictures/img_4.jpg"></figure></a>
-			<a href="#"><figure class="picture" data-title="Image Caption 5" data-url="/pictures/img_5.jpg"></figure></a>
-			<a href="#"><figure class="picture" data-title="Image Caption 6" data-url="/pictures/img_6.jpg"></figure></a>
-			<a href="#"><figure class="picture" data-title="Image Caption 7" data-url="/pictures/img_7.jpg"></figure></a>
-			<a href="#"><figure class="picture" data-title="Image Caption 8" data-url="/pictures/img_8.jpg"></figure></a>
-			<a href="#"><figure class="picture" data-title="Image Caption 9" data-url="/pictures/img_9.jpg"></figure></a>
-			<a href="#"><figure class="picture" data-title="Image Caption 10" data-url="/pictures/img_10.jpg"></figure></a> -->
-		</div>
+</section>
+<section class="container-fluid">
+	<article id="gallery" style="display:none;">
+		<?php foreach($list as $i => $row) : ?>
+			<a href="/gallery/view/<?=$row['idx']?>">
+			<img alt="<?=$row['name']?>"
+			     src="<?=$row['thumbPath']?>"
+			     data-image="<?=$row['thumbPath']?>"
+			     data-description="<?=$row['name']?>"
+			     style="display:none">
+			</a>
+		<?php endforeach;?>
 	</article>
 </section>
 
-
-
 <script type="text/javascript">
-	var kts ;
 	$(document).ready(function(){
-	  kts =  $("#gallery").latae({
-	        loader : '/img/loader.gif',
-	        init : function() { console.log('bonjour'); },
-	        loadPicture : function(event, img) { console.log($(img)); },
-	        resize : function(event, gallery) { console.log(gallery); },
-	        displayTitle: true
-	    });
+		$("#gallery").unitegallery({
+			tile_border_color:"#7a7a7a",
+			tile_outline_color:"#8B8B8B",
+			tile_enable_shadow:true,
+			tile_shadow_color:"#8B8B8B",
+			tile_overlay_opacity:0.3,
+			tile_show_link_icon:true,
+			tile_image_effect_type:"sepia",
+			tile_image_effect_reverse:true,
+			tile_enable_textpanel:true,
+			lightbox_textpanel_title_color:"e5e5e5",
+			tiles_col_width:230,
+			tiles_space_between_cols:20,
+			tile_link_newpage: false,			//open the tile link in new page
+			tile_enable_action:	false			//enable tile action on click like lightbox
+					
+		});
 	});
 
 </script>

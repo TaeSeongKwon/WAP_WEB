@@ -19,29 +19,7 @@
 		/*border : 1px solid silver;*/
 		min-height: 490px;
 	}
-	.tFrame{
-		min-height: 250px !important;
-	}
-	.boardHead, .tHead{
-		background-color: burlywood;
-		color: white;
-		font-weight: bold;
-		font-size: medium;
-		padding:7px 0px;
-	}
-	.tfooter{
-		border-top : 1px silver solid;
-	}
-	.boardItem, .tItem{
-		padding : 5px 0px;
-		border-bottom : solid 1px silver;
-	}
-	.boardItem:hover, .tItem:hover{
-		background-color: skyblue;
-	}
-	.tFrame{
-		margin-bottom: 5%;
-	}
+	
 	.mySlider {
 		overflow-y: hidden;
 		overflow-x: visible; 
@@ -71,129 +49,113 @@
 	}
 </style>
 
-
-<section class='container mainBody'>
-	<article class='row '>
-		<div class='col-xs-12'>
-			<h3>회원 관리</h3>
-		</div>
-	</article>
+<section class="container">
+	<h3>회원 관리</h3>
 	<hr>
-
-	<article class='row'>
-		<div class='col-sm-12'>
-			<div class='manageSec'>
-				<div>
-					<a href='javascript:;' class='newMemberBtn'>
-						<label >새로 가입된 회원</label>
-						<label id='newMemberCnt'>( <?=$noCnt?> )</label>
-						<span class='caret'></span>
-					</a>
-				</div>
-				<div id='newMemberDiv' class='mySlider'>
-					<div class='tFrame ' style='min-height:50px;'>
-						<div class='tHead row text-center'>
-							<div class='col-xs-1 '>번호</div>
-							<div class='col-sm-3 col-xs-6'>이름</div>
-							<div class='col-xs-2 hidden-xs'>학번</div>
-							<div class='col-xs-2 hidden-xs'>학과</div>
-							<div class='col-sm-2 col-xs-4'>등급</div>
-							<div class='col-sm-2 hidden-xs'>가입일</div>
-							
-						</div>
-						<div class='tBody text-center'>
-							<?php $tmpIdx = $noCnt; ?>
-							<?php foreach($noList as $i => $row) : ?>
-								<div class='row tItem' id="newMember_<?=$row['idx']?>">
-									<div class='col-xs-1 '><?=$tmpIdx?></div>
-									<div class='col-sm-3 col-xs-6'>
-										<a href='javascript:;' class='newMemberLink'><?=$row['name']?></a>
-										<form name='newMemberForm' class='newMemberForm'>
-											<input type='hidden' id='newMemberIdx' name='idx' value="<?=$row['idx']?>">
-										</form>
-									</div>
-									<div class='col-xs-2 hidden-xs'><?=$row['sNumber']?></div>
-									<div class='col-xs-2 hidden-xs'><?=$row['major']?></div>
-									<div class='col-sm-2 col-xs-4'><?=$row['level']?></div>
-									<div class='col-sm-2 hidden-xs'><?=$row['regDate']?></div>
-								</div>
-								<?php $tmpIdx--; ?>
-							<?php endforeach; ?>
-						</div>
-					</div>
-				</div>
-
-				<label>Activity Memeber</label>
-				<div class='tFrame '>
-					<div class='tHead row text-center'>
-						<div class='col-xs-1 '>번호</div>
-						<div class='col-sm-3 col-xs-6'>이름</div>
-						<div class='col-xs-2 hidden-xs'>학번</div>
-						<div class='col-xs-2 hidden-xs'>학과</div>
-						<div class='col-sm-2 col-xs-4'>등급</div>
-						<div class='col-sm-2 hidden-xs'>가입일</div>
-						
-					</div>
-					<div class='tBody text-center'>
-						<?php $tmpCnt = count($yeList); ?>
-						<?php foreach($yeList as $i => $row) :?>
-							<div class='row tItem'>
-								<div class='col-xs-1 '><?=$tmpCnt?></div>
-								<div class='col-sm-3 col-xs-6'>
-									<a href='javascript:;' class='mbNameLink'><?=$row['name']?></a>
-									<form name='actMemberForm' class='actMemberForm'>
-										<input type='hidden' id='actMemberIdx' name='idx' value="<?=$row['idx']?>">
-									</form>
-								</div>
-								<div class='col-xs-2 hidden-xs'><?=$row['sNumber']?></div>
-								<div class='col-xs-2 hidden-xs'><?=$row['major']?></div>
-								<div class='col-sm-2 col-xs-4'><?=$row['level']?></div>
-								<div class='col-sm-2 hidden-xs'><?=$row['regDate']?></div>
-
-							</div>
-							<?php $tmpCnt--;?>
-						<?php endforeach; ?>
-					</div>
-				</div>
-				<label>Non Activity Memeber</label>
-				<div class='tFrame '>
-					<div class='tHead row text-center'>
-						<div class='col-xs-1 '>번호</div>
-						<div class='col-sm-3 col-xs-6'>이름</div>
-						<div class='col-xs-2 hidden-xs'>학번</div>
-						<div class='col-xs-2 hidden-xs'>학과</div>
-						<div class='col-sm-2 col-xs-4'>등급</div>
-						<div class='col-sm-2 hidden-xs'>가입일</div>
-						
-					</div>
-					<div class='tBody text-center'>
-						<?php $tmpCnt = count($badList); ?>
-						<?php foreach($badList as $i => $row) : ?>
-						<div class='row tItem'>
-							
-							<div class='col-xs-1 '><?=$tmpCnt?></div>
-							<div class='col-sm-3 col-xs-6'>
-								<a href='javascript:;' class='mbNameLink'><?=$row['name']?></a>
-								<form name='actMemberForm' class='actMemberForm'>
-									<input type='hidden' id='actMemberIdx' name='idx' value="<?=$row['idx']?>">
-								</form>
-							</div>
-							<div class='col-xs-2 hidden-xs'><?=$row['sNumber']?></div>
-							<div class='col-xs-2 hidden-xs'><?=$row['major']?></div>
-							<div class='col-sm-2 col-xs-4'><?=$row['level']?></div>
-							<div class='col-sm-2 hidden-xs'><?=$row['regDate']?></div>
-
-						</div>
-						<?php $tmpCnt--;?>
-						<?php endforeach;?>
-					</div>
-				</div>
-			</div>
-		</div>
+</section>
+<section class="container">
+	<a href='javascript:;' class='newMemberBtn'>
+		<label >새로 가입된 회원</label>
+		<label id='newMemberCnt'>( <?=$noCnt?> )</label>
+		<span class='caret'></span>
+	</a>
+	<article id='newMemberDiv' class='mySlider'>
+		<table class="table table-striped">
+			<thead>
+				<th class="text-center">번호</th>
+				<th class="text-center">이름</th>
+				<th class="text-center hidden-xs">학번</th>
+				<th class="text-center hidden-xs">학과</th>
+				<th class="text-center">등급</th>
+				<th class="text-center hidden-xs">가입일</th>
+			</thead>
+			<tbody>
+				<?php $tmpIdx = $noCnt; ?>
+				<?php foreach($noList as $i => $row) : ?>
+					<tr id="newMember_<?=$row['idx']?>">
+						<td class="text-center"><?=$tmpIdx?></td>
+						<td class="text-center">
+							<a href='javascript:;' class='newMemberLink'><?=$row['name']?></a>
+							<form name='newMemberForm' class='newMemberForm'>
+								<input type='hidden' id='newMemberIdx' name='idx' value="<?=$row['idx']?>">
+							</form>
+						</td>
+						<td class="text-center hidden-xs"><?=$row['sNumber']?></td>
+						<td class="text-center hidden-xs"><?=$row['major']?></td>
+						<td class="text-center"><?=$row['level']?></td>
+						<td class="text-center hidden-xs"><?=$row['regDate']?></td>
+					</tr>
+					<?php $tmpIdx--; ?>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
 	</article>
-
+</section>
+<section class="container">
+	<label>Activity Memeber</label>
+	<table class="table table-striped">
+		<thead>
+			<th class="text-center">번호</th>
+			<th class="text-center">이름</th>
+			<th class="text-center hidden-xs">학번</th>
+			<th class="text-center hidden-xs">학과</th>
+			<th class="text-center">등급</th>
+			<th class="text-center hidden-xs">가입일</th>
+		</thead>
+		<tbody>
+			<?php $tmpIdx = count($yeList); ?>
+			<?php foreach($yeList as $i => $row) : ?>
+				<tr id="newMember_<?=$row['idx']?>">
+					<td class="text-center"><?=$tmpIdx?></td>
+					<td class="text-center">
+						<a href='javascript:;' class='mbNameLink'><?=$row['name']?></a>
+						<form name='actMemberForm' class='actMemberForm'>
+							<input type='hidden' id='actMemberIdx' name='idx' value="<?=$row['idx']?>">
+						</form>
+					</td>
+					<td class="text-center hidden-xs"><?=$row['sNumber']?></td>
+					<td class="text-center hidden-xs"><?=$row['major']?></td>
+					<td class="text-center"><?=$row['level']?></td>
+					<td class="text-center hidden-xs"><?=$row['regDate']?></td>
+				</tr>
+				<?php $tmpIdx--; ?>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
 </section>
 
+<section class="container">
+	<label>Non Activity Memeber</label>
+	<table class="table table-striped">
+		<thead>
+			<th class="text-center">번호</th>
+			<th class="text-center">이름</th>
+			<th class="text-center hidden-xs">학번</th>
+			<th class="text-center hidden-xs">학과</th>
+			<th class="text-center">등급</th>
+			<th class="text-center hidden-xs">가입일</th>
+		</thead>
+		<tbody>
+			<?php $tmpIdx = count($badList); ?>
+			<?php foreach($badList as $i => $row) : ?>
+				<tr id="newMember_<?=$row['idx']?>">
+					<td class="text-center"><?=$tmpIdx?></td>
+					<td class="text-center">
+						<a href='javascript:;' class='mbNameLink'><?=$row['name']?></a>
+						<form name='actMemberForm' class='actMemberForm'>
+							<input type='hidden' id='actMemberIdx' name='idx' value="<?=$row['idx']?>">
+						</form>
+					</td>
+					<td class="text-center hidden-xs"><?=$row['sNumber']?></td>
+					<td class="text-center hidden-xs"><?=$row['major']?></td>
+					<td class="text-center"><?=$row['level']?></td>
+					<td class="text-center hidden-xs"><?=$row['regDate']?></td>
+				</tr>
+				<?php $tmpIdx--; ?>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+</section>
 
 <?php /*=============================== Modal Area ======================================*/?>
 <section class='modal fade' id='userInfoModal'>

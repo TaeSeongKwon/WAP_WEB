@@ -23,6 +23,14 @@ class Gallery extends CI_Controller {
 		// exit;
 		$this->js = [];
 		$this->css = [];
+		$this->css[] = "unite-gallery";
+		$this->js[] = "jquery-2.1.4.min";
+		// $this->js[] = "jquery-11.0.min";
+		$this->js[] = "bootstrap.min";
+		$this->js[] = "jquery.faloading-0.2.min";
+		$this->js[] = "unitegallery.min";
+		$this->js[] = "ug-theme-tiles";
+
 		$this->info = $this->session->userdata('userInfo');
 		if($this->info == null)
 			redirect("member/loginView");
@@ -205,7 +213,7 @@ class Gallery extends CI_Controller {
 			$config['maintain_ratio'] = TRUE;
 			// $config['create_thumb'] = TRUE;
 			 $config['master_dim'] = 'auto';
-			$config['height'] = 250;
+			$config['width'] = 400;
 			$config['new_image'] = $_SERVER['DOCUMENT_ROOT']."/".$realThumbName;
 			 $this->image_lib->initialize($config);
 			 // $this->image_lib->clear();

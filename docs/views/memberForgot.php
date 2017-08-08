@@ -26,27 +26,30 @@
 			border-bottom: 1px solid silver;
 		}
 	}*/
+	.container *{
+		position: static !important;
+	}
 </style>
 
 <section class='container mainBody'>
 	<article class='row '>
 		<div class='col-xs-12'>
-			<h3>Help Desk - Find Account</h3>
+			<h3>계정 찾기</h3>
 		</div>
 	</article>
 	<hr>
 	<article class='row container joinBody'>
 		<div class='col-sm-6 forgotSec text-center ' id='idSec'>
 			<div>
-			<h3>Are you forgot ID?</h3>
-			<a class='btn btn-primary idBtn'>Find Your ID!</a>
+			<h3>아이디가 기억나지 않나요?</h3>
+			<a class='btn btn-primary idBtn'>아이디 찾기</a>
 			</div>
 		</div>
 		<hr class='visible-xs'>
 		<div class='col-sm-6 forgotSec text-center'>
 			<div>
-			<h3>Are you forgot Password?</h3>
-			<a class='btn btn-danger pwdBtn'>Find Your Password!</a>
+			<h3>비밀번호를 잊어버리셨나요?</h3>
+			<a class='btn btn-danger pwdBtn'>비밀번호 찾기</a>
 			</div>
 		</div>
 	</article>
@@ -56,7 +59,7 @@
 	<section class='modal-dialog'>
 		<article class='modal-content'>
 			<div class='modal-header'>
-				<h3>Find User ID</h3>
+				<h3>아이디 찾기</h3>
 			</div>
 			<div class='modal-body'>
 				<div class='container-fluid'>
@@ -64,11 +67,11 @@
 					<div class='row'>
 						<div class='col-xs-10  col-sm-6 findIdSec'>
 							<form name='findIdForm'>
-								<label class='txtUnderLn'>Name</label>
+								<label class='txtUnderLn'>이름</label>
 								<div class='form-group'>
 									<input type='text' class='form-control' name='name' placeholder='Please Input Name'> 
 								</div>
-								<label class='txtUnderLn'>Student Number</label>
+								<label class='txtUnderLn'>학번</label>
 								<div class='form-group'>
 									<input type='text' class='form-control' name='sNumber' placeholder='Please Input Student Number'> 
 								</div>
@@ -79,8 +82,8 @@
 				</div>
 			</div>
 			<div class='modal-footer'>
-				<a class='btn btn-primary findIdBtn'>Find</a>  
-				<a class='btn btn-danger' data-dismiss='modal'>Cancel</a>
+				<a class='btn btn-primary findIdBtn'>찾기</a>  
+				<a class='btn btn-danger' data-dismiss='modal'>취소</a>
 			</div>
 		</article>
 	</section>
@@ -90,18 +93,18 @@
 	<section class='modal-dialog'>
 		<article class='modal-content'>
 			<div class='modal-header'>
-				<h3>Find Password</h3>
+				<h3>비밀번호 찾기</h3>
 			</div>
 			<div class='modal-body'>
 				<div class='container-fluid'>
 					<div class='row'>
 						<div class='col-xs-10  col-sm-6 findPwdSec'>
 							<form name='findPwdForm' id='pwdForm'>
-								<label class='txtUnderLn'>ID</label>
+								<label class='txtUnderLn'>아이디</label>
 								<div class='form-group'>
 									<input type='text' class='form-control' name='id' placeholder='Please Input Name'> 
 								</div>
-								<label class='txtUnderLn'>Student Number</label>
+								<label class='txtUnderLn'>학번</label>
 								<div class='form-group'>
 									<input type='text' class='form-control' name='sNumber' placeholder='Please Input Student Number'> 
 								</div>
@@ -111,8 +114,8 @@
 				</div>
 			</div>
 			<div class='modal-footer'>
-				<a class='btn btn-primary findPwdBtn'>Find</a>
-				<a class='btn btn-danger' data-dismiss='modal'>Cancel</a>
+				<a class='btn btn-primary findPwdBtn'>찾기</a>
+				<a class='btn btn-danger' data-dismiss='modal'>취소</a>
 			</div>
 		</article>
 	</section>
@@ -122,29 +125,29 @@
 	<section class='modal-dialog'>
 		<article class='modal-content'>
 			<div class='modal-header'>
-				<h3>Resetting Password</h3>
+				<h3>비밀번호 재설정</h3>
 			</div>
 			<div class='modal-body'>
 				<div class='container-fluid'>
 					<div class='row' >
 						<div class='col-xs-10  col-sm-6 setPwdSec'>
 							<form name='setPwdForm'>
-								<label class='txtUnderLn'>New Password</label>
+								<label class='txtUnderLn'>새 비밀번호</label>
 								<div class='form-gruop'>
 									<input type='password' class='form-control' name='pwd' placeholder='Please Input New Password'>
 								</div>
-								<label class='txtUnderLn'>Password Identity</label>
+								<label class='txtUnderLn'>비밀번호 확인</label>
 								<div class='form-gruop'>
 									<input type='password' class='form-control' name='rePwd' placeholder='Please Input One more Password'>
 								</div>
-								<p id='noticePwd'>Please Input New Password</p>
+								<p id='noticePwd'>새로운 비밀번호를 입력하세요</p>
 							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class='modal-footer'>
-				<a class='btn btn-primary setPwdBtn'>Set</a>
+				<a class='btn btn-primary setPwdBtn'>변경</a>
 			</div>
 		</article>
 	</section>
@@ -166,11 +169,11 @@
 		name = name.trim();
 		sNumber = sNumber.trim();
 		if(name == ""){
-			alert("Please Input ID");
+			alert("아이디를 입력하세요");
 			return ;
 		}
 		if(sNumber ==""){
-			alert("Please Input Student Number");
+			alert("학번을 입력하세요.");
 			return ;
 		}
 
@@ -231,7 +234,7 @@
 		var target = $('#noticePwd');
 		target.empty();
 		if(pwd.length < 6)
-			target.append("Password Length is big more then 5 Length");
+			target.append("비밀번호는 5자리 이상 이어야 합니다.");
 		else 
 			target.append("Good! Please Re Input");
 	});
@@ -243,7 +246,7 @@
 		var target = $('#noticePwd');
 		target.empty();
 		if(rePwd != pwd)
-			target.append("Your input is not equal the both");
+			target.append("입력하신 비밀번호가 맞지않습니다.");
 		else 
 			target.append("GOOD!")
 

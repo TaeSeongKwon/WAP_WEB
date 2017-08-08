@@ -50,6 +50,9 @@
 		border-bottom: 3px solid skyblue;
 		padding-bottom: 1px;
 	}
+	.mainBody *{
+		z-index: -1;
+	}
 </style>
 
 <section class='container mainBody'>

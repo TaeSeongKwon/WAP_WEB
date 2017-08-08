@@ -23,6 +23,9 @@ class Member extends CI_Controller {
 		// exit;
 		$this->js = [];
 		$this->css = [];
+		$this->js[] = "jquery-2.1.4.min";
+		$this->js[] = "bootstrap.min";
+		$this->js[] = "jquery.faloading-0.2.min";
 		$this->info = $this->session->userdata('userInfo');
 
 	}
@@ -42,7 +45,7 @@ class Member extends CI_Controller {
 					echo '<script>alert("학번을 입력하세요")</script>';
 					break;
 				case 2:
-					echo '<script>alert("이미 가입하신 학번입니!")</script>';
+					echo '<script>alert("이미 가입하신 학번입니다!")</script>';
 					break;
 			}
 
@@ -106,33 +109,29 @@ class Member extends CI_Controller {
 		$email = $this->input->post('email');
 		$introduce = $this->input->post('introduce');
 		$birthday = $this->input->post('birthDay');
-
+		$pwdHash = password_hash($pwd, PASSWORD_BCRYPT);
+		$time = date('Y-m-d H:i:s');
 		$data = array(
 			'idx'				=>		0,
 			'name'				=>		$name,
 			'sNumber'			=>		$sNumber,
 			'majorIdx'			=>		$major,
-			'id'					=>		$id,
-			'pwd'				=>		"PASSWORD('$pwd')",
+			'id'				=>		$id,
+			'pwd'				=>		$pwdHash,
 			'levelIdx'			=>		10,
 			'birthday'			=>		$birthday,
 			'phoneNumber'		=>		$phoneNumber,
 			'email'				=>		$email,
 			'introduction'		=>		$introduce,
-			'regDate'			=>		date('Y-m-d'),
-			'isAllow'			=>		'Y'
+			'regDate'			=>		$time,
+			'isAllow'			=>		'Y',
+			'penalty_date'		=>		0
 		);
-		$time = date('Y-m-d H:i:s');
-		$sql = "INSERT INTO MEMBER 
-		VALUES(0, '$name', '$sNumber', $major, '$id', PASSWORD('$pwd'), 10, DATE'$birthday', '$phoneNumber', '$email', '$introduce', DATE'$time', 'Y');";
-		// print_r($sql);
-		// exit;
-		if($this->db->query($sql))
+	
+		if($this->db->insert("MEMBER", $data))
 			redirect('/member/success');
 		else
-			redirect('/member/error');
-		
-		
+			redirect('/member/error');		
 	}
 	public function error(){
 		$this->load->view('error');
@@ -192,9 +191,12 @@ class Member extends CI_Controller {
 		$pwd = $this->input->post('pwd');
 		$idx = $this->input->post('idx');
 
-		$sql = "UPDATE MEMBER SET pwd = PASSWORD('$pwd') WHERE idx = $idx ;";
+		// $sql = "UPDATE MEMBER SET pwd = PASSWORD('$pwd') WHERE idx = $idx ;";
+		$pwdHash = password_hash($pwd, PASSWORD_BCRYPT);
+		
+		$sql2 = "UPDATE MEMBER SET pwd = ".$this->db->escape($pwdHash)."WHERE idx = ".$this->db->escape($idx).";";
 		$responseData = new stdClass();
-		if($this->db->query($sql))
+		if($this->db->query($sql2))
 			$responseData->code = 200;
 		else 
 			$responseData->code = 500;
@@ -206,20 +208,37 @@ class Member extends CI_Controller {
 	public function loginView(){
 		$this->load->view('loginView');
 	}
+
 	public function login(){
 		$id = $this->input->post('userId');
 		$pwd = $this->input->post('userPwd');
 
-		$sql = "SELECT idx, name, id, levelIdx FROM MEMBER WHERE id = '$id' AND pwd = PASSWORD('$pwd') ;";
-	
+		$sql = "SELECT idx, name, pwd, id, levelIdx, penalty_date FROM MEMBER WHERE id = '$id';";
+		
 		$resultData = $this->db->query($sql)->result_array();
+		if(count($resultData) > 0){
+			$resultData = $resultData[0];
+			
+			if($resultData["pwd"] === "NULL"){
 
-		if(isset($resultData[0])){
-			$this->session->set_userdata('userInfo', $resultData[0]);
-			redirect("/");
-		}else redirect("member/loginView");
+				$head = array(
+					"info"			=>			$resultData,
+					"js"			=>			$this->js,
+					"css"			=>			$this->css
+				);
 
-
+				$this->load->view("head", $head);
+				$this->load->view('changePasswordPolicy');
+				$this->load->view("tail");
+			}else{
+				if(password_verify($pwd, $resultData["pwd"])){
+					$this->session->set_userdata('userInfo', $resultData);
+					redirect("/");
+				}else{
+					redirect("member/loginView");
+				}
+			}
+		}
 	}
 	public function logout(){
 		$this->session->sess_destroy();

@@ -38,6 +38,9 @@
 	.upCancel:hover{
 		text-decoration: none;	
 	}
+	.container *{
+		position: static !important;
+	}
 </style>
 
 <section class='container mainBody'>

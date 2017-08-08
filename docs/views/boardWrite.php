@@ -1,10 +1,9 @@
 
 <!-- style="position : relative;" -->
+
 <style type='text/css'>
 	
 	.mainBody{
-		border-left  : 1px solid silver;
-		border-right  : 1px solid silver;
 		padding-bottom:10%;
 		min-height:100%;
 		/*height:100%;*/
@@ -26,78 +25,111 @@
 		margin : 10px 0px;
 	}
 </style>
-
-<section class='container mainBody'>
-	<article class='row titleSec'>
-		<div class='col-xs-12'>
-			<strong><h3>글 쓰기</h3></strong>
+<section id="test"></section>
+<script src="/lang/summernote-ko-KR.js"></script>
+<section class='container'>
+	<strong><h3>글 쓰기</h3></strong>
+	<hr>	
+</section>
+<section class="container">
+	<form name='writeForm' id='writeForm'>
+		<!-- <input type='file' mutiple name='userFile' id='userFile' style='display:none;'> -->
+		<input type='hidden' name='main' id='main'>
+		<input type='hidden' name='type' id='type' value='<?=$type?>'>
+		<div class="input-group">
+			<span class="input-group-addon">제목</span>
+			<input type='text' name='title' class='form-control' placeholder='제목을 입력하세요'>
 		</div>
+	</form>
+</section>
+<br>
+<section class="container">
+	<article>
+		<a class="btn btn-warning btn-sm" id="fileSelectBtn">파일선택</a>
 	</article>
-	<hr>
-	<article class='row mainSec'>
-		<div class='col-sm-11 container mainSecCenter' >
-			<label>제목</label>
-			<form name='writeForm' id='writeForm'>
-				<!-- <input type='file' mutiple name='userFile' id='userFile' style='display:none;'> -->
-				<input type='hidden' name='main' id='main'>
-				<input type='hidden' name='type' id='type' value='<?=$type?>'>
-				<div class='form-group'>
-					<input type='text' name='title' class='form-control' placeholder='제목을 입력하세요'>
-				</div>
-			</form>
-			<div id='editor'>
-				
-			</div>
-			<div class='text-right btnSec'>
-				<a class='btn btn-primary writeBtn'>등록</a>
-				<a class='btn btn-danger' href='/board/lists/<?=$type?>'>취소</a>
-			</div>
-		</div>
+	<input type="file" id="fileInput" multiple style="display:none;">
+	<table class="table">
+		<thead>
+			<th>번호</th>
+			<th>이름</th>
+			<th>사이즈</th>
+		</thead>
+		<tbody id="fileInfoSec">
+			
+		</tbody>
+	</table>
+</section>
+<br>
+<section class="container">
+	<article id="contents">
 		
 	</article>
-	
 </section>
 
-<script>
-	var data = {
-		targetId : "editor"
-	};
-	var obj = new initTSEditor(data);
+<section class="container">
+	<article class="text-right">
+		<a class='btn btn-primary writeBtn'>등록</a>
+		<a class='btn btn-danger' href='/board/lists/<?=$type?>'>취소</a>
+	</article>
+</section>
 
+
+<script>
+	$("#contents").summernote({
+		"height"	: 	400,
+		"lang"		: 	"ko-KR"
+	});
+	$("#contents").summernote("code", "<p><br></p>");
+	
+	$("#fileSelectBtn").click(() => {
+		$("#fileInput").click();
+	});
+	$("#fileInput").change((e) => {
+		var openTr = "<tr>";
+		var closeTr = "</tr>";
+		var openTd = "<td>";
+		var closeTd = "</td>";
+
+		var fileList = e.target.files;
+		console.log("files : ", fileList);
+		$("#fileInfoSec").empty();
+		for(var idx = 0; idx<fileList.length; idx++){
+			var fileName = fileList[idx]["name"];
+			var fileSize = (fileList[idx]["size"] / (1024*1024)).toFixed(2);
+			$("#fileInfoSec").append(openTr +openTd+(idx+1)+closeTd+openTd+fileName+closeTd+openTd+fileSize+" MB"+closeTd+closeTr );
+		}
+	});
+	
 	$('.writeBtn').click(function(){
 		var title = document.writeForm.title.value;
-		var main = obj.getNormalText();
-		var realMain = obj.getHtmlText();
 		var realTitle = document.writeForm.title.value;
 		var boardType = document.writeForm.type.value;
-		var fileList = obj.getUploadFile();
+		var fileList = $("#fileInput")[0].files;
 		title = title.trim();
 		
 		if(title == ""){
 			alert("제목을 입력하세요");
 			return ;
 		}
-
-		// main = main.replace(/<(\/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(\/)?>/gi, "");
-		// main = main.trim();
-		// main = main.replace(/&nbsp;/gi, "");
-		// main = main.replace(/ /gi, "");
-		console.log("text : ", main);
 		
-		if(main == ""){
+		if($("#contents").summernote("isEmpty")){
 			alert("내용을 입력하세요");
 			return ;
 		}
+
 		var formData = new FormData();
 		formData.append('title', realTitle);
-		formData.append('main', realMain);
+		formData.append('main', $("#contents").summernote("code"));
 		formData.append('type', boardType);
+
 		if(fileList != null){
 			formData.append('fileCnt', fileList.length);
-			for(var idx = 1; idx<=fileList.length; idx++)
+			for(var idx = 1; idx<=fileList.length; idx++){
+				console.log("file_"+idx, fileList[idx-1]);
 				formData.append('file_'+idx, fileList[idx-1]);
+			}
 		}
-		// $("#group").faLoading();
+		
 		$("body").faLoading();
 		$.ajax({
 			url : '/board/uploadBoard', 
@@ -116,3 +148,4 @@
 		});
 	})
 </script>
+

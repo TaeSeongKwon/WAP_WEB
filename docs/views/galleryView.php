@@ -1,5 +1,12 @@
-
-
+<style>
+	@media (max-width: 768px){
+		.navbar-collapse{
+			z-index: 9999999;
+	    	position: absolute;
+	    	width: 100%;
+		}
+	}
+</style>
 <section class='container mainBody'>
 	<article class='row'>
 		<div class='col-xs-12'>
